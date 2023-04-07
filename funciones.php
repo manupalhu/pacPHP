@@ -9,7 +9,9 @@
 	
 
 	function pintaTablaUsuarios(){
-		// Completar...	
+		// consultar usuarios
+		$usuarios = getListaUsuarios();
+		
 	}
 
 		

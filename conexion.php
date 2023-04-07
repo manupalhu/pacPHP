@@ -7,12 +7,24 @@
 		$pass = "password";
 		$baseDatos = "pac_dwes";
 
-		// Completar...
+		// Crear conexión con la base de datos
+		$conexion = new mysqli($host, $user, $pass, $baseDatos);
+
+		// Comprobar conexión
+		if ($conexion->connect_error) {
+			die("No se ha podido realizar la conexión: " . $conexion->connect_error);
+		}
+
+		// Devolver conexión
+		return $conexion;
+
 	}
 
 
 	function cerrarConexion($conexion) {
-		// Completar...
+		// cerrar conexión
+		$conexion->close();
+
 	}
 
 
