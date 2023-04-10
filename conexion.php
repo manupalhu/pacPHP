@@ -1,7 +1,6 @@
 <?php 
 
 	function crearConexion() {
-		// Cambiar en el caso en que se monte la base de datos en otro lugar
 		$host = "localhost";
 		$user = "root";
 		$pass = "password";
@@ -11,11 +10,11 @@
 		$conexion = new mysqli($host, $user, $pass, $baseDatos);
 
 		// Comprobar conexión
-		if ($conexion->connect_error) {
+		if (!$conexion) {
 			die("No se ha podido realizar la conexión: " . $conexion->connect_error);
 		}
 
-		// Devolver conexión
+		//Devolver conexión
 		return $conexion;
 
 	}
@@ -23,8 +22,9 @@
 
 	function cerrarConexion($conexion) {
 		// cerrar conexión
-		$conexion->close();
+		mysqli_close($conexion);
 
+		
 	}
 
 
