@@ -17,6 +17,8 @@
 
 	<h1>Lista de artículos</h1>
 
+	<a href="formArticulos.php?accion=Añadir">Añadir Producto</a>
+
 	<table>
 
 		<?php
@@ -26,18 +28,16 @@
 
 			if ($_COOKIE['tipoUsuario'] == 0 || $_COOKIE['tipoUsuario'] == 1) {
 
-				if(isset($_GET ['orden'])){
+				if (isset($_GET['orden'])) {
 
-					getProductos($_GET ['orden']);
+					pintaProductos($_GET['orden']);
 
-				}else{
+				} else {
 
 					//Por defecto, ordenar por ID
-					getProductos("ID");
+					pintaProductos("ID");
 
 				}
-
-				
 
 			} else {
 
@@ -51,7 +51,7 @@
 			echo "<p>No tiene permiso para estar aquí. <a href='index.php'>Volver al inicio</a></p>";
 
 		}
-		
+
 		?>
 
 	</table>
