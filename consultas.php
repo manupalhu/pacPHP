@@ -136,7 +136,7 @@ function getProducto($ID)
 
 	// Realizar consulta
 	$resultado = $conexion->query($consulta);
-	
+
 	// Comprobar si hay resultados
 	if ($resultado->num_rows > 0) {
 		// Recorrer resultados
@@ -152,7 +152,7 @@ function getProducto($ID)
 
 	// Devolver producto
 	return $producto;
-	
+
 
 }
 
@@ -174,10 +174,10 @@ function getProductos($orden)
 
 			// Devolver productos en forma de tabla<table>
 			print("<tr>" .
-			     "<td>" . $fila['id'] . "</td>" .
-			     "<td>" . $fila['name'] . "</td>" .
-			     "<td>" . $fila['cost'] . "</td>" .
-			     "<td>" . $fila['price'] . "</td>");
+				"<td>" . $fila['id'] . "</td>" .
+				"<td>" . $fila['name'] . "</td>" .
+				"<td>" . $fila['cost'] . "</td>" .
+				"<td>" . $fila['price'] . "</td>");
 
 			// Consultar nombre de la categoría
 			$consulta = "SELECT name FROM category WHERE id = " . $fila['category_id'];
@@ -186,8 +186,8 @@ function getProductos($orden)
 			print("<td>" . $fila2['name'] . "</td>");
 
 			//
-			print("<td><a href='FormArticulos.php?id=" . $fila['id'] . "&accion=Editar'>Editar</a> - <a href='FormArticulos.php?id=" . $fila['id'] . "&accion=Borrar'>Borrar</a></td>".
-			 "</tr>");
+			print("<td><a href='FormArticulos.php?id=" . $fila['id'] . "&accion=Editar'>Editar</a> - <a href='FormArticulos.php?id=" . $fila['id'] . "&accion=Borrar'>Borrar</a></td>" .
+				"</tr>");
 
 
 		}
@@ -205,19 +205,49 @@ function getProductos($orden)
 
 function anadirProducto($nombre, $coste, $precio, $categoria)
 {
-	// Completar...	
+	// Añadir producto
+	$conexion = crearConexion();
+	$consulta = "INSERT INTO product (name, cost, price, category_id) VALUES ('$nombre', $coste, $precio, '$categoria')";
+	$resultado = $conexion->query($consulta);
+
+	// Cerrar conexión
+	cerrarConexion($conexion);
+
+	// Devolver resultado
+	return $resultado;
+
 }
 
 
 function borrarProducto($id)
 {
-	// Completar...	
+	// Borrar producto
+	$conexion = crearConexion();
+	$consulta = "DELETE FROM product WHERE id = '$id'";
+	$resultado = $conexion->query($consulta);
+
+	// Cerrar conexión
+	cerrarConexion($conexion);
+
+	// Devolver resultado
+	return $resultado;
+
 }
+
 
 
 function editarProducto($id, $nombre, $coste, $precio, $categoria)
 {
-	// Completar...	
+	// Editar producto
+	$conexion = crearConexion();
+	$consulta = "UPDATE product SET name = '$nombre', cost = $coste, price = $precio, category_id = '$categoria' WHERE id = '$id'";
+	$resultado = $conexion->query($consulta);
+
+	// Cerrar conexión
+	cerrarConexion($conexion);
+
+	// Devolver resultado
+	return $resultado;
 }
 
 ?>
